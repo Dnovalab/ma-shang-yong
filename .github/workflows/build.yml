@@ -9,14 +9,13 @@ jobs:
     name: "Build for ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: macos-latest
             platform: mac
           - os: windows-latest
             platform: win
-          - os: ubuntu-latest
-            platform: linux
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,12 +24,12 @@ jobs:
         with:
           node-version: 20
       - name: Install deps
-        run: npm install
+        run: npm install && npm install sharp
         working-directory: AI编程助手
       - name: Generate icons
         run: |
           mkdir -p build/icons
-          npx -y sharp-cli --input build/icon.svg --output build/icons/icon.png 1024 1024 || true
+          node -e "const sharp=require('sharp'); const svg=require('fs').readFileSync('build/icon.svg','utf8'); sharp(Buffer.from(svg)).resize(1024,1024).png().toFile('build/icons/icon.png').then(()=>console.log('icon generated')).catch(e=>{console.error(e);process.exit(1)})"
         working-directory: AI编程助手
       - name: Build
         run: npx electron-builder --${{ matrix.platform }} --config build.config.json
