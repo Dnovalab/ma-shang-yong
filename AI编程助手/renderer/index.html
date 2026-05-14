@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI编程助手</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Settings panel -->
+    <div id="settings-panel" class="panel">
+      <div class="panel-header">
+        <span class="panel-title">设 置</span>
+        <button id="close-settings" class="btn-icon">&#10005;</button>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>选择模型</label>
+          <select id="model-select">
+            <option value="deepseek-chat">DeepSeek Chat（推荐）</option>
+            <option value="deepseek-reasoner">DeepSeek Reasoner</option>
+            <option value="qwen-max">通义千问 Max</option>
+            <option value="glm-4-plus">智谱 GLM-4</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>API Key</label>
+          <input type="password" id="api-key-input" placeholder="粘贴你的 API Key">
+          <p class="hint">还没有 Key？</p>
+          <a href="https://platform.deepseek.com" target="_blank" class="btn-link">去 DeepSeek 注册（手机号就行）</a>
+          <p class="hint">注册后进入 API Keys → 创建 Key → 复制粘贴到上面</p>
+        </div>
+        <button id="save-settings" class="btn-primary">保存</button>
+      </div>
+    </div>
+
+    <!-- Main chat area -->
+    <div id="main-area">
+      <!-- Top bar -->
+      <div class="top-bar">
+        <button id="open-settings" class="btn-icon settings-btn">&#9881;</button>
+        <span class="app-title">AI编程助手</span>
+        <span class="version">v1.0</span>
+      </div>
+
+      <!-- Chat messages -->
+      <div id="chat-messages">
+        <div class="message welcome">
+          <div class="msg-content">
+            <p>你好！我是 AI 编程助手。</p>
+            <p>你可以问我任何编程问题：</p>
+            <ul>
+              <li>「用 Python 写一个计算器」</li>
+              <li>「帮我解释这段代码」</li>
+              <li>「怎么用 JavaScript 读取 CSV 文件」</li>
+            </ul>
+            <p class="hint">开始前，先点右上角齿轮 ⚙️ 设置你的 API Key。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input area -->
+      <div class="input-area">
+        <textarea id="user-input" placeholder="输入你的问题..." rows="2"></textarea>
+        <button id="send-btn" class="btn-send">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

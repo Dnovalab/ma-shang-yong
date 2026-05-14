@@ -1,0 +1,15 @@
+{
+  "appId": "com.mashangyong.ai-assistant",
+  "productName": "AI编程助手",
+  "directories": {
+    "output": "dist"
+  },
+  "mac": {
+    "target": ["dmg"],
+    "icon": null
+  },
+  "win": {
+    "target": ["nsis"],
+    "icon": null
+  }
+}
